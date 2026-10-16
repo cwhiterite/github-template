@@ -18,6 +18,8 @@ htmlcov/
 node_modules/
 dist/
 build/
+# Keep: `build/` above would otherwise swallow the build workflow skill.
+!.agents/skills/build/
 coverage/
 *.tsbuildinfo
 
