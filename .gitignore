@@ -40,3 +40,6 @@ Thumbs.db
 *.db
 *.duckdb
 *.wal
+
+# Notes
+notes/

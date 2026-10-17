@@ -6,15 +6,17 @@
     Each agent gets its own folder and branch (agent/<Name>), so 2-3 agents can
     work in parallel without touching each other's files or main.
     Worktrees are created next to the repo in "<repo>-wt\<Name>".
+    New branches start from a freshly fetched origin/main (see docs/workflow.md).
 
 .EXAMPLE
     .\scripts\agent-worktree.ps1 -Name 42-login-form
+    .\scripts\agent-worktree.ps1 -Name 42-login-form -Base main   # offline: use local main
     .\scripts\agent-worktree.ps1 -Name 42-login-form -Remove
     .\scripts\agent-worktree.ps1 -List
 #>
 param(
     [string]$Name,
-    [string]$Base = "main",
+    [string]$Base = "origin/main",
     [switch]$Remove,
     [switch]$List
 )
@@ -47,7 +49,12 @@ git show-ref --verify --quiet "refs/heads/$branch"
 if ($LASTEXITCODE -eq 0) {
     git worktree add $path $branch
 } else {
-    git worktree add -b $branch $path $Base
+    if ($Base -like "origin/*") {
+        git fetch origin --quiet
+        if ($LASTEXITCODE -ne 0) { throw "git fetch failed. Check your connection, or use -Base main to start from local main." }
+    }
+    # --no-track: the new branch must not use origin/main as its upstream.
+    git worktree add --no-track -b $branch $path $Base
 }
 if ($LASTEXITCODE -ne 0) { throw "git worktree add failed." }
 
@@ -55,3 +62,4 @@ Write-Host ""
 Write-Host "Worktree ready: $path"
 Write-Host "Branch:         $branch"
 Write-Host "Open that folder in a separate IDE window and point the agent at it."
+Write-Host "First push:     git push -u origin $branch"

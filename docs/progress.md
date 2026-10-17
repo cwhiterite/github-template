@@ -2,6 +2,8 @@
 
 > Short-term memory for you and any agent. Newest entries first.
 > Trim old log entries once they are captured in an ADR or no longer matter.
+> **Don't edit this on a feature branch.** Write `docs/changes/<branch>.md` instead;
+> `consolidate-docs` folds fragments in here. Unconsolidated fragments count too.
 
 ## Current state
 
