@@ -1,7 +1,8 @@
 # Architecture
 
 > Agents read this instead of scanning the whole codebase. Keep it accurate and terse.
-> Updated by the `sync-docs` skill after code changes.
+> **Don't edit this on a feature branch.** `sync-docs` writes to `docs/changes/<branch>.md`;
+> `consolidate-docs` folds those fragments in here. Check `docs/changes/` for newer impact rows.
 
 ## Overview
 

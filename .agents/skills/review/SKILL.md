@@ -13,7 +13,8 @@ description: >-
 - Local branch: `git diff main...HEAD`
 - GitHub PR: `gh pr diff <number>`
 
-Read `AGENTS.md` (conventions) and the *Change impact map* in `docs/architecture.md`.
+Read `AGENTS.md` (conventions), the *Change impact map* in `docs/architecture.md`,
+and any impact rows or gotchas in `docs/changes/`.
 
 ## Checklist
 
@@ -25,7 +26,9 @@ Read `AGENTS.md` (conventions) and the *Change impact map* in `docs/architecture
 5. **Scaling:** Any N+1 queries, unbounded loops or loads, or full-table scans
    that will hurt at the expected scale?
 6. **Security:** Hardcoded secrets? Unparameterized SQL? Unvalidated input?
-7. **Docs:** Were `docs/` updated (sync-docs)?
+7. **Docs:** Is there a fragment `docs/changes/<branch>.md` (sync-docs)? Shared docs
+   (`progress.md`, `architecture.md`, ADR index, `AGENTS.md`) must **not** be edited
+   directly on a feature branch. Exception: a `consolidate-docs` PR.
 8. **Improvements:** Optional ideas. **List them only; don't implement.**
 
 ## Output format
