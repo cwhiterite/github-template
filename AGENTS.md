@@ -37,7 +37,7 @@
 
 ## Workflow
 
-Every task follows: **plan → build (incl. tests) → review → sync-docs**.
+Every task follows: **plan -> build (incl. tests) -> review -> sync-docs**.
 
 Parallel agents add: one worktree each, plans compared for overlap, the `merge`
 skill for one-PR-at-a-time updates, and `consolidate-docs` for fragments.

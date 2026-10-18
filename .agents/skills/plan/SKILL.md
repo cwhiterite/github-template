@@ -69,7 +69,7 @@ Put the heavier or structural task in the earlier wave. Output:
 
 ```markdown
 **Wave 1 (parallel):** task-a, task-b
-**Wave 2:** task-c (after task-a: both modify `router.js` → `routes`)
+**Wave 2:** task-c (after task-a: both modify `router.js` -> `routes`)
 ```
 
 If an agent later needs a file that isn't in its plan, it adds it to the plan and

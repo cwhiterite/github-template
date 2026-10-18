@@ -23,7 +23,7 @@ are already on `main`.
    ```
 2. **Collect fragments:** every file in `docs/changes/` except `README.md` and
    `_template.md`. Order them oldest first by their *Log* date. Nothing to
-   consolidate → stop and say so.
+   consolidate -> stop and say so.
 3. **Fold each section into its master doc.** Keep it terse; merge duplicates.
    | Fragment section | Goes to |
    | ---------------- | ------- |
