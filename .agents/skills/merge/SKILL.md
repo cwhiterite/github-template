@@ -27,7 +27,7 @@ description: >-
    git fetch origin
    git merge origin/main
    ```
-   No conflicts → go to step 5.
+   No conflicts -> go to step 5.
 4. **Resolve conflicts.** Before choosing anything, check *Known gotchas* in
    `docs/progress.md` and `docs/changes/` so you don't undo an earlier fix.
    - **Additive** (both sides added lines, e.g. two new routes or list items):

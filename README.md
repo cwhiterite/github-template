@@ -14,7 +14,7 @@ workflow itself. Everything is markdown, git, and GitHub.
 | `docs/architecture.md` | Components, key flows (Mermaid), **change impact map**. |
 | `docs/workflow.md` | One-agent and parallel-agent workflow, with diagram. |
 | `docs/adr/` | Architecture Decision Records. |
-| `.agents/skills/` | `plan` → `build` → `review` → `sync-docs`, plus `merge` and `consolidate-docs`. |
+| `.agents/skills/` | `plan` -> `build` -> `review` -> `sync-docs`, plus `merge` and `consolidate-docs`. |
 | `.github/` | PR and issue templates that mirror the workflow. |
 | `scripts/agent-worktree.ps1` | Isolated worktree and branch per agent, for parallel work. |
 
@@ -27,7 +27,7 @@ workflow itself. Everything is markdown, git, and GitHub.
    git grep -n "TODO(project)"
    ```
 3. Write ADR `0002` for your stack/database choice (`0001` is the workflow itself).
-4. Protect `main` on GitHub (Settings → Branches → require PR before merging).
+4. Protect `main` on GitHub (Settings -> Branches -> require PR before merging).
 5. Optional: create a GitHub Projects board linked to the repo as your kanban.
 
 ## Day-to-day

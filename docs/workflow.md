@@ -5,7 +5,7 @@ Reasoning: [ADR 0001](adr/0001-parallel-agents-workflow.md).
 
 ## One agent
 
-`plan` → (approve) → `build` → `review` → `sync-docs` → push and open a PR → **you merge**.
+`plan` -> (approve) -> `build` -> `review` -> `sync-docs` -> push and open a PR -> **you merge**.
 
 Fragments pile up in `docs/changes/`. Run `consolidate-docs` whenever you like,
 e.g. weekly or when the folder gets busy.
