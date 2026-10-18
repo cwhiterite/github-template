@@ -47,10 +47,10 @@ description: >-
 8. **Next PR.** After each merge, `main` has moved, so repeat from step 2 for the
    next PR.
 
-## After the queue is empty
+## After the queue is empty (Merge ritual)
 
-- Suggest running `consolidate-docs`.
-- Clean up each merged worktree and branch:
+1. **Check for doc fragments:** If any files exist in `docs/changes/` (other than `README.md` and `_template.md`), **prompt the user to run `consolidate-docs`** immediately so master docs and architecture do not lag behind shipped features.
+2. **Clean up merged worktrees & branches:**
   ```powershell
   .\scripts\agent-worktree.ps1 -Name <name> -Remove
   git branch -d agent/<name>

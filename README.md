@@ -29,6 +29,7 @@ workflow itself. Everything is markdown, git, and GitHub.
 3. Write ADR `0002` for your stack/database choice (`0001` is the workflow itself).
 4. Protect `main` on GitHub (Settings -> Branches -> require PR before merging).
 5. Optional: create a GitHub Projects board linked to the repo as your kanban.
+6. **Status single source of truth:** Keep roadmap and current state exclusively in `docs/progress.md`; link to it from `README.md` rather than duplicating status tables to avoid status drift.
 
 ## Day-to-day
 

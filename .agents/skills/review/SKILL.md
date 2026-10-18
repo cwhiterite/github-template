@@ -8,6 +8,11 @@ description: >-
 
 # Review
 
+## When review is required
+
+- **Mandatory:** PRs with non-trivial logic, new features, complex bug fixes, schema/database migrations, or structural refactors.
+- **Skip or self-review:** Trivial PRs (docs-only, formatting, typo fixes, or single-file changes under ~10 lines). For a solo developer, inspecting the diff on GitHub's "Files changed" tab before merging is sufficient.
+
 ## Get the diff
 
 - Local branch: `git diff main...HEAD`

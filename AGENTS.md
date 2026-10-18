@@ -60,7 +60,9 @@ load skills automatically, open and follow the file directly.
 7. **Sync docs** (`sync-docs` skill) before ending any turn that changed code. On a
    branch, write only your fragment `docs/changes/<branch>.md`; never edit shared docs.
 8. **No new dependencies** without stating why. Structural choices get an ADR.
+9. **Pin major dependencies** at scaffold time. Toolchain major updates often silently change defaults (e.g. compiler flags, auto-included types).
 
 ## Conventions
 
+- **Status:** `docs/progress.md` is the single source of truth for project status and roadmap. Link to it; do not duplicate status tables in `README.md`.
 <!-- TODO(project): Naming, formatting, error handling, logging, folder layout, etc. -->
