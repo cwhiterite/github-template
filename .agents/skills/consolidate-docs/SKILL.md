@@ -35,7 +35,8 @@ are already on `main`.
    | ADRs drafted | Rename `XXXX-…` to the next free number, set the title number, add to `docs/adr/README.md` |
    | AGENTS.md proposals | **Don't apply.** List them in the PR description for the human. |
 4. **Refresh** *Current state* and *Next steps* in `docs/progress.md` from the
-   whole picture. Trim old *Log* entries that are captured in an ADR or no longer matter.
+   whole picture. Trim old *Log* entries that are captured in an ADR or no longer matter
+   (retain ~5–10 recent entries to keep docs lean and maximize prompt-cache efficiency).
 5. **Delete** the consumed fragments with `git rm`.
 6. **Commit and open a PR:**
    ```powershell

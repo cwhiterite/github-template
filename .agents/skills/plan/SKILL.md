@@ -32,7 +32,16 @@ description: >-
 5. **Test plan.** Existing tests that must keep passing, plus new tests to add.
 6. If this is a structural decision (dependency, data model, framework, new
    pattern), draft an ADR as `docs/adr/XXXX-short-title.md` from the template.
-7. Present the plan. **Wait for approval** before building unless the task is trivial.
+7. Present the plan. **Wait for approval** before building unless the task qualifies for the **Fast lane** below.
+
+## Fast lane (trivial tasks)
+
+A task qualifies for the fast lane if it is:
+- docs-only, comment/typo fixes, or minor config adjustments;
+- under ~10 lines touched in a single file;
+- contains no logic, API, database, or interface changes.
+
+**Fast lane action:** Skip the plan table, could-break checklist, and full test suite run. Create the branch, make the change, run lint/format, and push/PR directly (or bundle into the active feature branch).
 
 ## Output format
 

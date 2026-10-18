@@ -1,7 +1,7 @@
 # Progress
 
 > Short-term memory for you and any agent. Newest entries first.
-> Trim old log entries once they are captured in an ADR or no longer matter.
+> Keep the Log concise (last ~5-10 entries). Trim older entries once captured in an ADR or no longer relevant—this keeps the file lean and maximizes prompt-cache efficiency.
 > **Don't edit this on a feature branch.** Write `docs/changes/<branch>.md` instead;
 > `consolidate-docs` folds fragments in here. Unconsolidated fragments count too.
 
