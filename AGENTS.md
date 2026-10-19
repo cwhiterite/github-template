@@ -61,6 +61,8 @@ load skills automatically, open and follow the file directly.
    branch, write only your fragment `docs/changes/<branch>.md`; never edit shared docs.
 8. **No new dependencies** without stating why. Structural choices get an ADR.
 9. **Pin major dependencies** at scaffold time. Toolchain major updates often silently change defaults (e.g. compiler flags, auto-included types).
+10. **Align before assuming:** If requirements, output formats, or edge cases are unclear, ask. Don't assume or hide confusion; surface trade-offs early.
+11. **Minimal implementation:** Write the simplest code that completely solves the problem. Avoid speculative features, premature abstractions, and unrequested complexity.
 
 ## Conventions
 
