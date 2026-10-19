@@ -43,7 +43,7 @@ description: >-
    feature logic here: report it and send the PR back to its owner.
 6. **Push** with a normal `git push`. The PR updates itself.
 7. **Report:** "PR #N is up to date with main, tests pass, conflicts resolved:
-   … Ready for you to merge." Wait for the human to merge it.
+   … Ready for you to merge (run `.\scripts\merge-pr.ps1 N` or merge on GitHub)." Wait for the human to merge it.
 8. **Next PR.** After each merge, `main` has moved, so repeat from step 2 for the
    next PR.
 
