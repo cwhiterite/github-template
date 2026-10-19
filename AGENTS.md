@@ -31,7 +31,7 @@
 | `docs/workflow.md`       | One-agent and parallel-agent flow (diagram).                |
 | `docs/adr/`              | Decisions and the reasoning behind them.                    |
 | `.agents/skills/`        | `plan`, `build`, `review`, `sync-docs`, `merge`, `consolidate-docs`. |
-| `scripts/`               | Helper scripts (e.g. `agent-worktree.ps1`).                 |
+| `scripts/`               | Helper scripts (`agent-worktree.ps1`, `merge-pr.ps1`).       |
 | <!-- TODO(project) -->   | Source code                                                 |
 | <!-- TODO(project) -->   | Tests                                                       |
 

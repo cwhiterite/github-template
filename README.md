@@ -16,7 +16,7 @@ workflow itself. Everything is markdown, git, and GitHub.
 | `docs/adr/` | Architecture Decision Records. |
 | `.agents/skills/` | `plan` -> `build` -> `review` -> `sync-docs`, plus `merge` and `consolidate-docs`. |
 | `.github/` | PR and issue templates that mirror the workflow. |
-| `scripts/agent-worktree.ps1` | Isolated worktree and branch per agent, for parallel work. |
+| `scripts/` | Helper scripts: `agent-worktree.ps1` (worktrees), `merge-pr.ps1` (1-step PR merge & cleanup). |
 
 ## Starting a new project from this template
 
@@ -37,7 +37,7 @@ workflow itself. Everything is markdown, git, and GitHub.
 - **Two or three agents:** Run `.\scripts\agent-worktree.ps1 -Name <issue#>-<name>`
   once per agent and open each worktree in its own window. Have each agent plan,
   then ask one agent to compare the plans and split them into waves. Each agent
-  opens a PR; a `merge` agent prepares them one at a time; you merge.
+  opens a PR; a `merge` agent prepares them one at a time; you merge (or run `.\scripts\merge-pr.ps1 <number>`).
   Full flow: [`docs/workflow.md`](docs/workflow.md).
 - **Docs:** Run `consolidate-docs` now and then to fold `docs/changes/` into the master docs.
 - **Review with a second agent:** Ask a separate agent to run the `review` skill on the PR.
