@@ -154,6 +154,10 @@ if ($WhatIf) {
             Write-Host "| $line"
         }
         Write-Host ("+-" + ("-" * 67) + "`n") -ForegroundColor DarkGray
+    } else {
+        Write-Host ("`n+-- PR Description " + ("-" * 50)) -ForegroundColor DarkGray
+        Write-Host "| (none)" -ForegroundColor DarkGray
+        Write-Host ("+-" + ("-" * 67) + "`n") -ForegroundColor DarkGray
     }
     return
 }
