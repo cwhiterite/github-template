@@ -26,10 +26,16 @@ workflow itself. Everything is markdown, git, and GitHub.
    ```powershell
    git grep -n "TODO(project)"
    ```
-3. Write ADR `0002` for your stack/database choice (`0001` is the workflow itself).
-4. Protect `main` on GitHub (Settings -> Branches -> require PR before merging).
-5. Optional: create a GitHub Projects board linked to the repo as your kanban.
-6. **Status single source of truth:** Keep roadmap and current state exclusively in `docs/progress.md`; link to it from `README.md` rather than duplicating status tables to avoid status drift.
+3. Delete the marker file. This repo is now a project, so `AGENTS.md` rule 7's
+   shared-docs exception no longer applies and `.github/workflows/guard.yml`
+   starts enforcing it:
+   ```powershell
+   Remove-Item .is-template
+   ```
+4. Write ADR `0002` for your stack/database choice (`0001` is the workflow itself).
+5. Protect `main` on GitHub (Settings -> Branches -> require PR before merging).
+6. Optional: create a GitHub Projects board linked to the repo as your kanban.
+7. **Status single source of truth:** Keep roadmap and current state exclusively in `docs/progress.md`; link to it from `README.md` rather than duplicating status tables to avoid status drift.
 
 ## Day-to-day
 

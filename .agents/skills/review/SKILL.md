@@ -33,7 +33,8 @@ and any impact rows or gotchas in `docs/changes/`.
 6. **Security:** Hardcoded secrets? Unparameterized SQL? Unvalidated input?
 7. **Docs:** Is there a fragment `docs/changes/<branch>.md` (sync-docs)? Shared docs
    (`progress.md`, `architecture.md`, ADR index, `AGENTS.md`) must **not** be edited
-   directly on a feature branch. Exception: a `consolidate-docs` PR.
+   directly on a feature branch. Exceptions: a `consolidate-docs` PR, or this repo
+   being the template itself (`.is-template` present, `AGENTS.md` rule 7).
 8. **Improvements:** Optional ideas. **List them only; don't implement.**
 
 ## Output format
