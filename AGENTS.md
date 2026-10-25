@@ -53,7 +53,7 @@ load skills automatically, open and follow the file directly.
    interface: search for its callers and check the *Change impact map* in
    `docs/architecture.md` and any impact rows in `docs/changes/`.
 3. **Every bug fix gets a regression test** that fails before the fix and passes after.
-4. **Run the full test suite**, not just new tests, before calling anything done.
+4. **Run the full test suite**, not just new tests, before calling anything done (except docs-only / comment edits).
 5. **Max 3 fix attempts** on a failing test. Then stop, summarize what you tried, and ask.
 6. **Don't undo a previous fix** without checking *Known gotchas* in `docs/progress.md`
    and `docs/changes/`. If you're about to reverse earlier behavior, say so explicitly.
@@ -67,4 +67,9 @@ load skills automatically, open and follow the file directly.
 ## Conventions
 
 - **Status:** `docs/progress.md` is the single source of truth for project status and roadmap. Link to it; do not duplicate status tables in `README.md`.
+- **PRs:** Always fill out `.github/pull_request_template.md`, via
+  `gh pr create --body-file <temp-file>` or `gh pr create --fill`. Never pass
+  inline markdown containing backticks to `--body "..."`: PowerShell treats
+  backticks as escape characters and mangles code spans.
+
 <!-- TODO(project): Naming, formatting, error handling, logging, folder layout, etc. -->

@@ -18,6 +18,9 @@ where `<branch>` is the branch name without `agent/` (e.g. `42-login-form`).
 Do **not** edit `docs/progress.md`, `docs/architecture.md`, `docs/adr/README.md`,
 or `AGENTS.md`. The `consolidate-docs` skill moves fragments into those files later.
 
+**Fast lane:** a docs-only / comment-only change that touched no code needs no
+fragment. Skip this skill and note it in the PR body instead.
+
 ## Steps
 
 1. Run `git diff main...HEAD` and `git status` to see what this branch changed.
