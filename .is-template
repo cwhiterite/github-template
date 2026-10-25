@@ -1,0 +1,25 @@
+# .is-template — marker file
+
+This repository **IS the template** (the repo people copy from), not a project
+scaffolded from it. Nothing else.
+
+What it changes:
+
+- `AGENTS.md` rule 7: shared docs (`AGENTS.md`, `docs/progress.md`,
+  `docs/architecture.md`, `docs/adr/README.md`) may be edited directly on a
+  feature branch here, with the human's approval. Everywhere else, branches only
+  write their `docs/changes/<branch>.md` fragment.
+- `.github/workflows/guard.yml`: the shared-docs check reports a notice and passes
+  instead of failing the PR.
+
+Delete it the moment you scaffold a project from this template, together with the
+`TODO(project)` sweep:
+
+    git grep -n "TODO(project)"
+    rm .is-template        # PowerShell: Remove-Item .is-template
+
+After deletion the shared-docs rule applies in full and `guard.yml` starts
+enforcing it on every pull request.
+
+This file survives renames and forks on purpose — it answers "what role does this
+repo play?", which the repository name cannot.

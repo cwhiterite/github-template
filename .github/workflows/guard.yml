@@ -1,0 +1,77 @@
+name: guard
+
+# Enforces AGENTS.md rule 7: on a feature branch, shared docs are never edited
+# directly — only `docs/changes/<branch>.md` fragments are.
+#
+# Skipped (notice only) while `.is-template` exists, i.e. while this repo is the
+# template itself. Delete that file when scaffolding a project and this check
+# starts failing PRs that break the rule.
+#
+# Allowed exceptions:
+#   - branch named `agent/consolidate-docs*` (the consolidator edits shared docs)
+#   - PR carrying the `consolidate-docs` label
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+
+permissions:
+  contents: read
+
+jobs:
+  shared-docs:
+    name: Shared docs guard
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Shared docs must not be edited on a feature branch
+        shell: bash
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          IS_CONSOLIDATE_BRANCH: ${{ startsWith(github.head_ref, 'agent/consolidate-docs') }}
+          HAS_CONSOLIDATE_LABEL: ${{ contains(github.event.pull_request.labels.*.name, 'consolidate-docs') }}
+        run: |
+          set -euo pipefail
+
+          if [ -f .is-template ]; then
+            echo "::notice title=Shared docs guard::.is-template present - this is the template repo, rule not enforced."
+            exit 0
+          fi
+
+          git fetch origin "$BASE_REF"
+          changed=$(git diff --name-only "origin/$BASE_REF...HEAD")
+
+          shared=$(printf '%s\n' "$changed" | grep -E \
+            '^(AGENTS\.md|docs/progress\.md|docs/architecture\.md|docs/adr/README\.md)$' || true)
+
+          if [ -z "$shared" ]; then
+            echo "OK: no shared docs changed."
+            exit 0
+          fi
+
+          if [ "$IS_CONSOLIDATE_BRANCH" = "true" ] || [ "$HAS_CONSOLIDATE_LABEL" = "true" ]; then
+            echo "::notice title=Shared docs guard::consolidate-docs PR - shared doc edits allowed:"
+            printf '%s\n' "$shared"
+            exit 0
+          fi
+
+          {
+            echo "### Shared docs edited on a feature branch"
+            echo
+            echo "AGENTS.md rule 7 forbids this. These files may only change on a"
+            echo "\`consolidate-docs\` PR (branch \`agent/consolidate-docs-*\` or the"
+            echo "\`consolidate-docs\` label):"
+            echo
+            printf '%s\n' "$shared" | sed 's/^/- /'
+            echo
+            echo "Put the change in your fragment \`docs/changes/<branch>.md\` instead;"
+            echo "\`consolidate-docs\` folds it into the master docs later."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          while IFS= read -r f; do
+            echo "::error file=${f}::Shared docs edited on a feature branch - see job summary."
+          done <<< "$shared"
+          exit 1

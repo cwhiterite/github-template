@@ -59,6 +59,10 @@ load skills automatically, open and follow the file directly.
    and `docs/changes/`. If you're about to reverse earlier behavior, say so explicitly.
 7. **Sync docs** (`sync-docs` skill) before ending any turn that changed code. On a
    branch, write only your fragment `docs/changes/<branch>.md`; never edit shared docs.
+   **Exception:** if `.is-template` exists, this repo *is* the template and shared docs
+   may be edited directly on a branch, with the human's approval. The file is deleted
+   when scaffolding a project (see README step 3), after which this rule applies in
+   full and `.github/workflows/guard.yml` enforces it.
 8. **No new dependencies** without stating why. Structural choices get an ADR.
 9. **Pin major dependencies** at scaffold time. Toolchain major updates often silently change defaults (e.g. compiler flags, auto-included types).
 10. **Align before assuming:** If requirements, output formats, or edge cases are unclear, ask. Don't assume or hide confusion; surface trade-offs early.

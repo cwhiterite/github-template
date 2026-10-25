@@ -1,0 +1,6 @@
+# Workflow YAML and shell scripts are executed by bash on the GitHub Actions
+# runner. CRLF line endings break `run:` blocks (`set -euo\r: command not found`),
+# so force LF for them regardless of a Windows checkout setting.
+*.yml  text eol=lf
+*.yaml text eol=lf
+*.sh   text eol=lf
