@@ -15,7 +15,7 @@ workflow itself. Everything is markdown, git, and GitHub.
 | `docs/workflow.md` | One-agent and parallel-agent workflow, with diagram. |
 | `docs/adr/` | Architecture Decision Records. |
 | `.agents/skills/` | `plan` -> `build` -> `review` -> `sync-docs`, plus `merge` and `consolidate-docs`. |
-| `.github/` | PR and issue templates that mirror the workflow. |
+| `.github/` | PR and issue templates that mirror the workflow, plus `guard.yml` (shared-docs check) and `ci.yml` (runs `scripts/test.ps1`). |
 | `scripts/` | Helper scripts: `agent-worktree.ps1` (worktrees), `merge-pr.ps1` (1-step PR merge & cleanup), `protect-main.ps1` (branch protection + required check). |
 
 ## Starting a new project from this template
@@ -32,17 +32,23 @@ workflow itself. Everything is markdown, git, and GitHub.
    ```powershell
    Remove-Item .is-template
    ```
-4. Write ADR `0002` for your stack/database choice (`0001` is the workflow itself).
-5. Protect `main` — requires a pull request, **zero** approving reviews, and the
-   `Shared docs guard` check:
+4. Create `scripts/test.ps1` with a single line — whatever your stack runs
+   (`pytest`, `npm test`, `go test ./...`, `dotnet test`, …). It is the single
+   source of truth for the test command: `.github/workflows/ci.yml` executes it,
+   and the *Test (all)* row in `AGENTS.md` points at it, so agents and CI can't
+   drift apart. Until the file exists, the `tests` check passes with a warning
+   instead of running anything — it never goes green for tests that didn't happen.
+5. Write ADR `0002` for your stack/database choice (`0001` is the workflow itself).
+6. Protect `main` — requires a pull request, **zero** approving reviews, and both
+   `Shared docs guard` and `tests`:
    ```powershell
    .\scripts\protect-main.ps1        # add -WhatIf to preview, -Remove to undo
    ```
    Zero approvals is deliberate: GitHub forbids authors from approving their own
    pull requests, so requiring one approval would deadlock a solo repo. Manual
    alternative: Settings -> Branches -> Add a branch protection rule.
-6. Optional: create a GitHub Projects board linked to the repo as your kanban.
-7. **Status single source of truth:** Keep roadmap and current state exclusively in `docs/progress.md`; link to it from `README.md` rather than duplicating status tables to avoid status drift.
+7. Optional: create a GitHub Projects board linked to the repo as your kanban.
+8. **Status single source of truth:** Keep roadmap and current state exclusively in `docs/progress.md`; link to it from `README.md` rather than duplicating status tables to avoid status drift.
 
 > **Auth gotcha:** pushing anything under `.github/workflows/` is rejected with
 > *"…without `workflow` scope"* until you grant it once:

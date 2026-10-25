@@ -10,7 +10,8 @@
     - Require a pull request before merging -> no direct pushes to main (AGENTS.md rule 1).
     - Required approving reviews: 0. GitHub forbids authors from approving their own
       pull requests, so requiring even one approval would deadlock a solo repository.
-    - Required status checks: the guard workflow's job name(s).
+    - Required status checks: "Shared docs guard" (shared-docs rule) and "tests"
+      (the suite). Both come from .github/workflows/ and both must be green.
     - enforce_admins: true, so the rule applies to you too - that is the point.
     - strict: true, so branches must be up to date with main before merging. The
       `merge` skill already brings branches up to date, and this keeps check results
@@ -23,8 +24,9 @@
     Branch to protect. Default: main.
 
 .PARAMETER Checks
-    Required status check names. Default: "Shared docs guard" - the job name from
-    .github/workflows/guard.yml. Pass an empty array to require no checks.
+    Required status check names. Default: "Shared docs guard" (from
+    .github/workflows/guard.yml) and "tests" (from .github/workflows/ci.yml).
+    Pass an empty array to require no checks.
 
 .PARAMETER Remove
     Delete the protection entirely.
@@ -49,7 +51,7 @@
 #>
 param(
     [string]$Branch = "main",
-    [string[]]$Checks = @("Shared docs guard"),
+    [string[]]$Checks = @("Shared docs guard", "tests"),
     [switch]$Remove,
     [switch]$WhatIf
 )

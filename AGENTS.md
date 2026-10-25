@@ -17,9 +17,13 @@
 | ---------------- | -------------------------- |
 | Install          | <!-- TODO(project) -->     |
 | Run              | <!-- TODO(project) -->     |
-| Test (all)       | <!-- TODO(project) -->     |
+| Test (all)       | `.\scripts\test.ps1`       |
 | Test (one file)  | <!-- TODO(project) -->     |
 | Lint / format    | <!-- TODO(project) -->     |
+
+- **Test (all) points at `scripts/test.ps1` on purpose.** `.github/workflows/ci.yml`
+  runs that same file, so the agent's command and CI's command are one string —
+  change it in one place, never in two.
 
 ## Where things live
 

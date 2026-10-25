@@ -1,0 +1,43 @@
+name: ci
+
+# Runs the project's test suite.
+#
+# There is exactly ONE source of truth for the test command: scripts/test.ps1.
+# AGENTS.md's "Test (all)" row points at the same file, so agents and CI cannot
+# drift apart (the classic "AGENTS.md says npm test, CI runs pytest" failure).
+#
+# If scripts/test.ps1 does not exist yet - a freshly scaffolded template, or this
+# repo before there is any code - the step passes with a warning annotation
+# instead of pretending tests ran.
+#
+# Branch protection requires the `tests` check (see scripts/protect-main.ps1).
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run tests
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ ! -f scripts/test.ps1 ]; then
+            echo "::warning title=tests::scripts/test.ps1 not found - tests did NOT run. Create it to run your suite in CI."
+            echo "No scripts/test.ps1 yet; nothing to run."
+            exit 0
+          fi
+
+          echo "Running: pwsh -File scripts/test.ps1"
+          pwsh -File scripts/test.ps1
