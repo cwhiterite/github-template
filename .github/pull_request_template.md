@@ -9,7 +9,7 @@ Closes #
 
 ## Tests
 
-- [ ] Full suite passes
+- [ ] Full suite passes (or: docs-only / comment-only fast-lane change, per `AGENTS.md` rule 4)
 - [ ] Bug fix includes a regression test (if applicable)
 
 ## Docs

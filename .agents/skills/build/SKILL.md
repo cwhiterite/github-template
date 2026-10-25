@@ -22,6 +22,8 @@ description: >-
    If you find you need to change something the plan didn't list, stop and update the plan.
 4. **Run the full test suite** (command in `AGENTS.md`), not just the new tests.
    This is how you catch "changing X broke Y".
+   **Fast lane** (docs-only, comment/typo, minor config; see the `plan` skill):
+   skip the suite, run lint/format, and go straight to commit.
 5. **On failure:** fix and re-run, **up to 3 attempts**. If it still fails, stop. Then:
    - summarize what you tried and what you think the cause is,
    - add a note under *Status* in your fragment `docs/changes/<branch>.md`,
@@ -33,6 +35,6 @@ description: >-
 
 ## Done when
 
-- All tests pass (full suite, not a subset).
+- All tests pass (full suite, not a subset). Fast-lane docs-only changes: lint is clean instead.
 - Lint is clean.
 - You can name the test that guards each item from the plan's *Could break* list.
